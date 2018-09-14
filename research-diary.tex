@@ -1,0 +1,53 @@
+% Page configuration
+\documentclass[letterpaper,11pt]{article}
+\usepackage{lipsum}
+
+% Uncomment if you prefer computer modern instead of times
+\usepackage{mathptmx}
+
+% Name and institution must preceed call to research-diary.sty package
+\newcommand{\userName}{Quang-Thinh Ha}
+\newcommand{\institution}{Boston University}
+
+% Bibliography for each chapters
+\usepackage[sectionbib]{chapterbib}
+
+% Fix section numbering
+\usepackage{titlesec}% http://ctan.org/pkg/titlesec
+\titleformat{\section}%
+  [hang]% <shape>
+  {\normalfont\bfseries\Large}% <format>
+  {}% <label>
+  {0pt}% <sep>
+  {}% <before code>
+\renewcommand{\thesection}{}% Remove section references...
+\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
+
+% Define a simpler rule for bold math letters
+\usepackage{bm}
+\makeatletter
+\newcounter{letter}
+\setcounter{letter}{1}
+\@whilenum\value{letter}<27\do{% loop over all letters in the alphabet
+  % \def\bmA{\bm{A}}, where A runs over all letters
+  %   Remove letters `bm'  vv  if you don't care about breaking LaTeX
+  \expandafter\edef\csname bm\Alph{letter}\endcsname{\noexpand\bm{\Alph{letter}}}
+  \expandafter\edef\csname bm\alph{letter}\endcsname{\noexpand\bm{\alph{letter}}}
+  \stepcounter{letter}%
+}
+
+% The guts and glory
+\usepackage{research-diary}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+  \include{title-page}
+\end{titlepage}
+
+% Include source files from each folder
+\include{2018/2018-05-31}
+\include{2018/2018-08-31}
+
+\end{document}
