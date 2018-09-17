@@ -82,6 +82,18 @@
   \end{wrapfigure}
 }
 
+% Fix section numbering
+\usepackage{titlesec}% http://ctan.org/pkg/titlesec
+\titleformat{\section}%
+  [hang]% <shape>
+  {\normalfont\bfseries\Large}% <format>
+  {}% <label>
+  {0pt}% <sep>
+  {}% <before code>
+\renewcommand{\thesection}{}% Remove section references...
+\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
+
+
 %%%%%%%%%%%% ASTRONOMY %%%%%%%%%%%%%%%%
 \newcommand{\Msun}{M_\odot}
 \newcommand{\Lsun}{L_\odot}
@@ -99,6 +111,18 @@
 \newcommand{\eqnend}{\end{eqnarray}}
 \newcommand{\deriv}[2]{\frac{d #1}{d #2}}
 \newcommand{\bigO}{\mathcal{O}}
+% Define a simpler rule for bold math letters
+\usepackage{bm}
+\makeatletter
+\newcounter{letter}
+\setcounter{letter}{1}
+\@whilenum\value{letter}<27\do{% loop over all letters in the alphabet
+  % \def\bmA{\bm{A}}, where A runs over all letters
+  %   Remove letters `bm'  vv  if you don't care about breaking LaTeX
+  \expandafter\edef\csname bm\Alph{letter}\endcsname{\noexpand\bm{\Alph{letter}}}
+  \expandafter\edef\csname bm\alph{letter}\endcsname{\noexpand\bm{\alph{letter}}}
+  \stepcounter{letter}%
+}
 
 %%%%%%%%% NEW ENVIRONMENTS %%%%%%%%%%%%
 \newenvironment{bullets}{

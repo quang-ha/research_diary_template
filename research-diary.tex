@@ -9,32 +9,8 @@
 \newcommand{\userName}{Quang-Thinh Ha}
 \newcommand{\institution}{Boston University}
 
-% Bibliography for each chapters
+% Bibliography for each chapters - must preceed call to research-diary.sty package
 \usepackage[sectionbib]{chapterbib}
-
-% Fix section numbering
-\usepackage{titlesec}% http://ctan.org/pkg/titlesec
-\titleformat{\section}%
-  [hang]% <shape>
-  {\normalfont\bfseries\Large}% <format>
-  {}% <label>
-  {0pt}% <sep>
-  {}% <before code>
-\renewcommand{\thesection}{}% Remove section references...
-\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
-
-% Define a simpler rule for bold math letters
-\usepackage{bm}
-\makeatletter
-\newcounter{letter}
-\setcounter{letter}{1}
-\@whilenum\value{letter}<27\do{% loop over all letters in the alphabet
-  % \def\bmA{\bm{A}}, where A runs over all letters
-  %   Remove letters `bm'  vv  if you don't care about breaking LaTeX
-  \expandafter\edef\csname bm\Alph{letter}\endcsname{\noexpand\bm{\Alph{letter}}}
-  \expandafter\edef\csname bm\alph{letter}\endcsname{\noexpand\bm{\alph{letter}}}
-  \stepcounter{letter}%
-}
 
 % The guts and glory
 \usepackage{research-diary}
